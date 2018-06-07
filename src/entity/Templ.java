@@ -8,6 +8,10 @@ public class Templ {
 	public String content;
 	public String class1;
 	public String class2;
+	public Templ()
+	{
+		
+	};
 	public Templ(String templid,String userid,String content,String class1,String class2)
 	{
 		this.templid=templid;

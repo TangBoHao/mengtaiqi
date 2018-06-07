@@ -11,7 +11,14 @@ public class HibernateUtils {
 		Configuration cfg=new Configuration();
 		cfg.configure();
 		SessionFactory sf=cfg.buildSessionFactory();
-		Session session=sf.openSession();
-		
+		session=sf.openSession();
 	}
+	
+	
+	public static Session getSession()
+	{
+		return session;
+	}
+	
+	
 }

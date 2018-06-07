@@ -1,3 +1,5 @@
+package servlet;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,11 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import bean.CharacterUtils;
  
 
 /**
  * Servlet implementation class UploadServlet
  */
+
 @WebServlet("/upload")
 public class upload extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -82,8 +86,10 @@ public class upload extends HttpServlet {
                 for (FileItem item : formItems) {
                     // 处理不在表单中的字段
                     if (!item.isFormField()) {
-                        String fileName = new File(item.getName()).getName();
-                        String filePath = uploadPath + File.separator + fileName;
+                       // String fileName = new File(item.getName()).getName();
+                    	String fileName=CharacterUtils.getRandomString(12);
+                        String filePath = uploadPath + File.separator +fileName;
+                        String realfilePath ="http://120.79.203.213:8080/mtq/upload/"+fileName;
                         File storeFile = new File(filePath);
                         // 在控制台输出文件的上传路径
                         System.out.println(filePath);
@@ -91,7 +97,7 @@ public class upload extends HttpServlet {
                         item.write(storeFile);
                        // request.setAttribute("message","文件上传成功!");
                         PrintWriter out=response.getWriter();
-                        out.println("\"url:\""+"\""+filePath+"\"");
+                        out.println("{\"url\":"+"\""+realfilePath+"\"}");
                     }
                 }
             }

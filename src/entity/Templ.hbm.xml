@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC 
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
@@ -11,8 +10,7 @@
     <property name="templid"></property>
     <property name="userid"></property>
     <property name="content"></property>
-    <property name="class1"></property?
+    <property name="class1"></property>
     <property name="class2"></property>
-    </id>
     </class>
     </hibernate-mapping>

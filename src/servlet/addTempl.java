@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
 import org.hibernate.Transaction;
 import net.sf.json.JSONArray;
 
@@ -50,7 +51,11 @@ public class addTempl extends HttpServlet {
 		String content=request.getParameter("content");
 		String class1=request.getParameter("class1");
 		String class2=request.getParameter("class2");
-		Transaction tx=HibernateUtils.session.beginTransaction();
+		System.out.println(userid+templid+content);
+		Session session=HibernateUtils.getSession();
+		Transaction tx=session.beginTransaction();
+		
+	class2="asdfasdf";	
 		Templ onet=new Templ(templid,userid,content,class1,class2);
 		HibernateUtils.session.save(onet);
 		tx.commit();
@@ -58,7 +63,7 @@ public class addTempl extends HttpServlet {
 		//out.println("add success");
 		Map<String,String> res=new HashMap<String,String>();
 		res.put("status", "200");
-		res.put("thisid",onet.getTid());
+		res.put("thisid",""+onet.getTid());
 		JSONArray jres=JSONArray.fromObject(res);
 		out.println(jres.toString());
 		
